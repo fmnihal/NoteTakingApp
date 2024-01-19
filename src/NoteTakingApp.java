@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class NoteTakingApp {
     static ArrayList<String> notes = new ArrayList<>();
+    static NoteAction[] actions = {new NewNote(), new ViewNote(), new EditNote(), new NoteSize(), new DeleteNote()};
 
     public static void main(String[] args) {
         while (true) {
@@ -17,44 +18,63 @@ public class NoteTakingApp {
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
 
-            switch (choice) {
-                case 1:
-                    NewNote.newNote();
-                    break;
-                case 2:
-                    ViewNote.viewNotes();
-                    break;
-                case 3:
-                    EditNote.editNote();
-                    break;
-                case 4:
-                    NoteSize.viewNoteSize();
-                    break;
-                case 5:
-                    DeleteNote.deleteNote();
-                    break;
-                case 6:
-                    System.out.println("Exiting Note Taking App. Goodbye!");
-                    return;
-                default:
-                    System.out.println("Invalid option. Please try again.");
-                    break;
+            if (choice >= 1 && choice <= 5) {
+                actions[choice - 1].execute();
+            } else if (choice == 6) {
+                System.out.println("Exiting Note Taking App. Goodbye!");
+                return;
+            } else {
+                System.out.println("Invalid option. Please try again.");
             }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//import java.util.ArrayList;
+//import java.util.Scanner;
+//
+//public class NoteTakingApp {
+//    static ArrayList<String> notes = new ArrayList<>();
+//
+//    public static void main(String[] args) {
+//        while (true) {
+//            System.out.println("\nSelect an option:");
+//            System.out.println("1. New Note");
+//            System.out.println("2. View Notes");
+//            System.out.println("3. Edit Additional Note");
+//            System.out.println("4. View Size of Notes");
+//            System.out.println("5. Delete Note");
+//            System.out.println("6. Exit");
+//
+//            Scanner scanner = new Scanner(System.in);
+//            int choice = scanner.nextInt();
+//
 //            switch (choice) {
 //                case 1:
-//                    newNote();
+//                    NewNote.newNote();
 //                    break;
 //                case 2:
-//                    viewNotes();
+//                    ViewNote.viewNotes();
 //                    break;
 //                case 3:
-//                    editNote();
+//                    EditNote.editNote();
 //                    break;
 //                case 4:
-//                    viewNoteSize();
+//                    NoteSize.viewNoteSize();
 //                    break;
 //                case 5:
-//                    deleteNote();
+//                    DeleteNote.deleteNote();
 //                    break;
 //                case 6:
 //                    System.out.println("Exiting Note Taking App. Goodbye!");
@@ -63,8 +83,31 @@ public class NoteTakingApp {
 //                    System.out.println("Invalid option. Please try again.");
 //                    break;
 //            }
-        }
-    }
+////            switch (choice) {
+////                case 1:
+////                    newNote();
+////                    break;
+////                case 2:
+////                    viewNotes();
+////                    break;
+////                case 3:
+////                    editNote();
+////                    break;
+////                case 4:
+////                    viewNoteSize();
+////                    break;
+////                case 5:
+////                    deleteNote();
+////                    break;
+////                case 6:
+////                    System.out.println("Exiting Note Taking App. Goodbye!");
+////                    return;
+////                default:
+////                    System.out.println("Invalid option. Please try again.");
+////                    break;
+////            }
+//        }
+//    }
 
 //    static void newNote() {
 //        Scanner scanner = new Scanner(System.in);
@@ -146,8 +189,6 @@ public class NoteTakingApp {
 //        String[] words = text.split("\\s+");
 //        return words.length;
 //    }
-
-}
 
 
 //class AddNote{};
